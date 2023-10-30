@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:numerical_method/newton_method/view.dart';
 import 'package:get/get.dart';
+import 'package:numerical_method/features/newton_method/view.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
