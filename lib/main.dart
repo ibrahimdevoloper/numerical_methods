@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:numerical_method/features/least_square_with_normal_equation_points/view.dart';
+import 'package:numerical_method/features/least_square_with_normal_equation_subequations/view.dart';
 import 'package:numerical_method/features/newton_method/view.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -42,7 +44,8 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 451, end: double.infinity, name: DESKTOP),
         ],
       ),
-      home: NewtonMethodPage(),
+      // home: NewtonMethodPage(),
+      home: LeastSquareWithNormalEquationPointsPage(),
     );
   }
 }
