@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 mixin LeastSquareWithNormalEquationPointsController on GetxController {
-
   List<Map<String, double>> coordinates = [];
   int? numberOfGeneratedPoints = 0;
   int? rangeStart;
@@ -19,9 +18,9 @@ mixin LeastSquareWithNormalEquationPointsController on GetxController {
 
     if (x != null && y != null) {
       coordinates.add({'x': x, 'y': y});
-      coordinates.sort((a, b) => (a['x']??0)>=(b['x']??0)?1:0);
-      xCoordinate =null;
-      yCoordinate =null;
+      coordinates.sort((a, b) => (a['x'] ?? 0) >= (b['x'] ?? 0) ? 1 : 0);
+      xCoordinate = null;
+      yCoordinate = null;
     }
     update();
   }
@@ -38,19 +37,29 @@ mixin LeastSquareWithNormalEquationPointsController on GetxController {
   void generateRandomPoints(int count) {
     final random = Random();
     for (int i = 0; i < count; i++) {
-      final x = random.nextDouble() * (rangeEnd!-rangeStart!) + (rangeStart!); // Adjust the range as needed
-      final y = random.nextDouble() * (rangeEnd!-rangeStart!) + (rangeStart!); // Adjust the range as needed
+      final x = random.nextDouble() * (rangeEnd! - rangeStart!) +
+          (rangeStart!); // Adjust the range as needed
+      final y = random.nextDouble() * (rangeEnd! - rangeStart!) +
+          (rangeStart!); // Adjust the range as needed
       coordinates.add({'x': x, 'y': y});
     }
-    coordinates.sort((a, b) => (a['x']??0)>=(b['x']??0)?1:0);
+    coordinates.sort((a, b) => (a['x'] ?? 0.0) > (b['x'] ?? 0.0)
+        ? 1
+        : (a['x'] ?? 0.0) == (b['x'] ?? 0.0)
+            ? 0
+            : -1);
     update();
   }
 
   void removeCoordinate(int index) {
     // setState(() {
     coordinates.removeAt(index);
+    coordinates.sort((a, b) => (a['x'] ?? 0.0) > (b['x'] ?? 0.0)
+        ? 1
+        : (a['x'] ?? 0.0) == (b['x'] ?? 0.0)
+            ? 0
+            : -1);
     update();
     // });
   }
-
 }
