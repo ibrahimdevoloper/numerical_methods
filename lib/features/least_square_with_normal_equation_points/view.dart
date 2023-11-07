@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:numerical_method/features/least_square_with_normal_equation/controller.dart';
 import 'package:numerical_method/features/least_square_with_normal_equation_subequations/view.dart';
@@ -48,6 +49,10 @@ class LeastSquareWithNormalEquationPointsPage extends StatelessWidget {
                               var doubleValue = double.tryParse(value ?? "");
                               controller.xCoordinate = doubleValue;
                             },
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r"[0-9\-\+\.]"))
+                            ],
                           ),
                         ),
                         SizedBox(width: 16),
@@ -67,6 +72,10 @@ class LeastSquareWithNormalEquationPointsPage extends StatelessWidget {
                               var doubleValue = double.tryParse(value ?? "");
                               controller.yCoordinate = doubleValue;
                             },
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r"[0-9\-\+\.]"))
+                            ],
                           ),
                         ),
                         SizedBox(width: 16),
@@ -97,14 +106,22 @@ class LeastSquareWithNormalEquationPointsPage extends StatelessWidget {
                                 keyboardType: TextInputType.number,
                                 validator: (value) {
                                   var intValue = int.tryParse(value ?? "");
-                                  return intValue == null
-                                      ? "please add a value"
-                                      : null;
+                                  if(intValue == null) {
+                                    return "please add a value";
+                                  } else if((controller.rangeStart??0)> (controller.rangeEnd??0)) {
+                                    return "end must be larger than start";
+                                  } else {
+                                    return null;
+                                  }
                                 },
                                 onChanged: (value) {
                                   var intValue = int.tryParse(value ?? "");
                                   controller.rangeStart = intValue;
                                 },
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp(r"[0-9\-\+\.]"))
+                                ],
                               ),
                             ),
                             SizedBox(width: 16),
@@ -115,14 +132,22 @@ class LeastSquareWithNormalEquationPointsPage extends StatelessWidget {
                                 keyboardType: TextInputType.number,
                                 validator: (value) {
                                   var intValue = int.tryParse(value ?? "");
-                                  return intValue == null
-                                      ? "please add a value"
-                                      : null;
+                                  if(intValue == null) {
+                                    return "please add a value";
+                                  } else if((controller.rangeStart??0)> (controller.rangeEnd??0)) {
+                                    return "end must be larger than start";
+                                  } else {
+                                    return null;
+                                  }
                                 },
                                 onChanged: (value) {
                                   var intValue = int.tryParse(value ?? "");
                                   controller.rangeEnd = intValue;
                                 },
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp(r"[0-9\-\+\.]"))
+                                ],
                               ),
                             ),
                           ],
@@ -137,14 +162,22 @@ class LeastSquareWithNormalEquationPointsPage extends StatelessWidget {
                                 keyboardType: TextInputType.number,
                                 validator: (value) {
                                   var intValue = int.tryParse(value ?? "");
-                                  return intValue == null
-                                      ? "please add a value"
-                                      : null;
+                                  if(intValue == null) {
+                                    return "please add a value";
+                                  } else if(intValue<0) {
+                                    return "Number of generated points must be greater than 0";
+                                  } else {
+                                    return null;
+                                  }
                                 },
                                 onChanged: (value) {
                                   var intValue = int.tryParse(value ?? "");
                                   controller.numberOfGeneratedPoints = intValue;
                                 },
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp(r"[0-9\-\+\.]"))
+                                ],
                               ),
                             ),
                             SizedBox(width: 16),
