@@ -1,9 +1,9 @@
 import 'dart:math';
 
-class CholeskyDecomposition {
+class CholeskyDecompositionModel {
   List<List<double>> matrix;
 
-  CholeskyDecomposition(this.matrix);
+  CholeskyDecompositionModel(this.matrix);
 
   List<List<double>> decompose() {
     if (isPositiveDefinite() && isSymmetric()) {

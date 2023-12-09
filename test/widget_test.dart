@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:numerical_method/core/models/cholesky_decomposion.dart';
+import 'package:numerical_method/core/models/cholesky_decomposion_model.dart';
 
 import 'package:numerical_method/main.dart';
 
@@ -40,7 +40,7 @@ void main() {
       [-2.0, 1, 0],
       [1, 2, 1]
     ];
-    var result = CholeskyDecomposition(matrix);
+    var result = CholeskyDecompositionModel(matrix);
     expect(result.decompose(), b);
   });
 
@@ -55,7 +55,7 @@ void main() {
       [0, 1, 2],
       [0, 0, 1]
     ];
-    var result = CholeskyDecomposition(matrix);
+    var result = CholeskyDecompositionModel(matrix);
     expect(result.getUpper(), b);
   });
 
@@ -70,7 +70,7 @@ void main() {
       [0, 1, 2],
       [0, 0, 1]
     ];
-    var result = CholeskyDecomposition(matrix);
+    var result = CholeskyDecompositionModel(matrix);
     expect(result.isSymmetric(), true);
   });
 }
