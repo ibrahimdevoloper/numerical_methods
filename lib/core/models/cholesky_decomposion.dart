@@ -70,30 +70,32 @@ class CholeskyDecomposition {
     return true;
   }
 
-  double determinant(List<List<double>> m) {
+  double determinant(List<List<double>> matrix) {
     var total = 0.0;
-    var s = 1;
-    if (m.length == 1) {
-      return m[0][0];
-    } else if (m.length == 2) {
-      return m[0][0] * m[1][1] - m[0][1] * m[1][0];
+    var sign = 1;
+    if (matrix.length == 1) {
+      return matrix[0][0];
+    } else if (matrix.length == 2) {
+      return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
     } else {
-      for (var i = 0; i < m[0].length; i++) {
+      for (var i = 0; i < matrix[0].length; i++) {
+        //create a empty matrix for smaller dimensions
         var smaller = List.generate(
-            m.length - 1, (_) => List.filled(m[0].length - 1, 0.0),
+            matrix.length - 1, (_) => List.filled(matrix[0].length - 1, 0.0),
             growable: false);
-        for (var a = 1; a < m.length; a++) {
+        for (var a = 1; a < matrix.length; a++) {
           var smallerCol = 0;
-          for (var b = 0; b < m[0].length; b++) {
+          for (var b = 0; b < matrix[0].length; b++) {
             if (b != i) {
-              smaller[a - 1][smallerCol] = m[a][b];
+              // start from
+              smaller[a - 1][smallerCol] = matrix[a][b];
               smallerCol++;
             }
           }
         }
         print(smaller);
-        total += s * m[0][i] * determinant(smaller);
-        s *= -1;
+        total += sign * matrix[0][i] * determinant(smaller);
+        sign *= -1;
       }
     }
     return total;
