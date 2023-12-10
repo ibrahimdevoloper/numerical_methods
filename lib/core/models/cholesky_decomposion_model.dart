@@ -93,7 +93,6 @@ class CholeskyDecompositionModel {
             }
           }
         }
-        print(smaller);
         total += sign * matrix[0][i] * determinant(smaller);
         sign *= -1;
       }
