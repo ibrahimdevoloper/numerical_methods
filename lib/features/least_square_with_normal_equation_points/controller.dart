@@ -37,10 +37,10 @@ mixin LeastSquareWithNormalEquationPointsController on GetxController {
   void generateRandomPoints(int count) {
     final random = Random();
     for (int i = 0; i < count; i++) {
-      final x = random.nextDouble() * (rangeEnd! - rangeStart!) +
-          (rangeStart!); // Adjust the range as needed
-      final y = random.nextDouble() * (rangeEnd! - rangeStart!) +
-          (rangeStart!); // Adjust the range as needed
+      final x = (random.nextDouble() * (rangeEnd! - rangeStart!) +
+          (rangeStart!)).toPrecision(4); // Adjust the range as needed
+      final y = (random.nextDouble() * (rangeEnd! - rangeStart!) +
+          (rangeStart!)).toPrecision(4); // Adjust the range as needed
       coordinates.add({'x': x, 'y': y});
     }
     coordinates.sort((a, b) => (a['x'] ?? 0.0) > (b['x'] ?? 0.0)
